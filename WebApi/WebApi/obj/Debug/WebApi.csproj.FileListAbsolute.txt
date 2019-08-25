@@ -80,3 +80,7 @@ D:\Git\Angular CRUD\WebApi\WebApi\obj\Debug\WebApi.csproj.CoreCompileInputs.cach
 D:\Git\Angular CRUD\WebApi\WebApi\obj\Debug\WebApi.csproj.CopyComplete
 D:\Git\Angular CRUD\WebApi\WebApi\obj\Debug\WebApi.dll
 D:\Git\Angular CRUD\WebApi\WebApi\obj\Debug\WebApi.pdb
+D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.dll
+D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.SqlServer.dll
+D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.xml
+D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.SqlServer.xml
