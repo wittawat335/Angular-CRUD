@@ -1,18 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule, MatDialogConfig } from '@angular/material/dialog'; //Dialog
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './orders/order/order.component';
+import { OrderItemComponent } from './orders/order-item/order-item.component';
+import { OrderService } from './shared/order.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrdersComponent,
+    OrderComponent,
+    OrderItemComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
-  providers: [],
+  entryComponents:[OrderItemComponent],
+  providers: [OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
