@@ -1,21 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RestaurantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="RestaurantModel.Customer" />
+    <EntitySet Name="Items" EntityType="RestaurantModel.Item" />
+    <EntitySet Name="Orders" EntityType="RestaurantModel.Order" />
+    <EntitySet Name="OrderItems" EntityType="RestaurantModel.OrderItem" />
+    <EntitySet Name="PaymentDetails" EntityType="RestaurantModel.PaymentDetail" />
+    <AssociationSet Name="FK_Order_Customer" Association="RestaurantModel.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_Item" Association="RestaurantModel.FK_OrderItems_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_Order" Association="RestaurantModel.FK_OrderItems_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderItem" EntitySet="OrderItems" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="CustomerID" />
     </Key>
     <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+    <NavigationProperty Name="Orders" Relationship="RestaurantModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
-      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemId" />
     </Key>
-    <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-    <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Item" FromRole="Item" ToRole="OrderItems" />
+    <NavigationProperty Name="OrderItems" Relationship="RestaurantModel.FK_OrderItems_Item" FromRole="Item" ToRole="OrderItem" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -26,8 +45,8 @@
     <Property Name="CustomerID" Type="Int32" />
     <Property Name="PMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="GTotal" Type="Decimal" Precision="18" Scale="2" />
-    <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-    <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItems" />
+    <NavigationProperty Name="Customer" Relationship="RestaurantModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="OrderItems" Relationship="RestaurantModel.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItem" />
   </EntityType>
   <EntityType Name="OrderItem">
     <Key>
@@ -37,12 +56,22 @@
     <Property Name="OrderID" Type="Int64" />
     <Property Name="ItemID" Type="Int32" />
     <Property Name="Quantity" Type="Int32" />
-    <NavigationProperty Name="Item" Relationship="Self.FK_OrderItems_Item" FromRole="OrderItems" ToRole="Item" />
-    <NavigationProperty Name="Order" Relationship="Self.FK_OrderItems_Order" FromRole="OrderItems" ToRole="Order" />
+    <NavigationProperty Name="Item" Relationship="RestaurantModel.FK_OrderItems_Item" FromRole="OrderItem" ToRole="Item" />
+    <NavigationProperty Name="Order" Relationship="RestaurantModel.FK_OrderItems_Order" FromRole="OrderItem" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="PaymentDetail">
+    <Key>
+      <PropertyRef Name="PMId" />
+    </Key>
+    <Property Name="PMId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CardOwnerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="ExpirationDate" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="CVV" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Order_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <End Type="RestaurantModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="RestaurantModel.Order" Role="Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
         <PropertyRef Name="CustomerID" />
@@ -53,45 +82,27 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderItems_Item">
-    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
-    <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+    <End Type="RestaurantModel.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="RestaurantModel.OrderItem" Role="OrderItem" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Item">
-        <PropertyRef Name="ItemID" />
+        <PropertyRef Name="ItemId" />
       </Principal>
-      <Dependent Role="OrderItems">
+      <Dependent Role="OrderItem">
         <PropertyRef Name="ItemID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderItems_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
-    <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="*" />
+    <End Type="RestaurantModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="RestaurantModel.OrderItem" Role="OrderItem" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
         <PropertyRef Name="OrderID" />
       </Principal>
-      <Dependent Role="OrderItems">
+      <Dependent Role="OrderItem">
         <PropertyRef Name="OrderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="RestaurantEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Customers" EntityType="Self.Customer" />
-    <EntitySet Name="Items" EntityType="Self.Item" />
-    <EntitySet Name="Orders" EntityType="Self.Order" />
-    <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
-    <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-      <End Role="Customer" EntitySet="Customers" />
-      <End Role="Order" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderItems_Item" Association="Self.FK_OrderItems_Item">
-      <End Role="Item" EntitySet="Items" />
-      <End Role="OrderItems" EntitySet="OrderItems" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderItems_Order" Association="Self.FK_OrderItems_Order">
-      <End Role="Order" EntitySet="Orders" />
-      <End Role="OrderItems" EntitySet="OrderItems" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

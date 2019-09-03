@@ -38,6 +38,12 @@ export class OrderComponent implements OnInit {
     dialogConfig.width = "50%";
     dialogConfig.data = { orderItemIndex, OrderID };
 
-    this.dialog.open(OrderItemComponent, dialogConfig);
+    this.dialog.open(OrderItemComponent, dialogConfig); //ถ้าตอน click มี index เข้ามา จะทำการ biding
+  }
+
+  onDeleteOrderItem(OrderItemID: number, i: number){
+ 
+      this.service.orderItems.splice(i,1);
+  
   }
 }

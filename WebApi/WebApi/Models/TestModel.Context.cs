@@ -18,7 +18,6 @@ namespace WebApi.Models
         public RestaurantEntities()
             : base("name=RestaurantEntities")
         {
-            base.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,5 +29,6 @@ namespace WebApi.Models
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
     }
 }

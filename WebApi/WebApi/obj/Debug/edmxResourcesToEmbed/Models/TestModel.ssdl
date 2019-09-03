@@ -9,9 +9,9 @@
   </EntityType>
   <EntityType Name="Item">
     <Key>
-      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemId" />
     </Key>
-    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
@@ -34,6 +34,16 @@
     <Property Name="ItemID" Type="int" />
     <Property Name="Quantity" Type="int" />
   </EntityType>
+  <EntityType Name="PaymentDetails">
+    <Key>
+      <PropertyRef Name="PMId" />
+    </Key>
+    <Property Name="PMId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CardOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CardNumber" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="ExpirationDate" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="CVV" Type="varchar" MaxLength="3" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Order_Customer">
     <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -51,7 +61,7 @@
     <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Item">
-        <PropertyRef Name="ItemID" />
+        <PropertyRef Name="ItemId" />
       </Principal>
       <Dependent Role="OrderItems">
         <PropertyRef Name="ItemID" />
@@ -75,6 +85,7 @@
     <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderItems" EntityType="Self.OrderItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentDetails" EntityType="Self.PaymentDetails" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Order" EntitySet="Order" />

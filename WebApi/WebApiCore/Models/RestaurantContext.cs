@@ -43,8 +43,6 @@ namespace WebApiCore.Models
 
             modelBuilder.Entity<Item>(entity =>
             {
-                entity.Property(e => e.ItemId).HasColumnName("ItemID");
-
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);

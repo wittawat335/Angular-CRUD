@@ -84,3 +84,6 @@ D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.dll
 D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.SqlServer.dll
 D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.xml
 D:\Git\Angular CRUD\WebApi\WebApi\bin\EntityFramework.SqlServer.xml
+D:\Git\Angular CRUD\WebApi\WebApi\bin\System.Web.Cors.dll
+D:\Git\Angular CRUD\WebApi\WebApi\bin\System.Web.Http.Cors.dll
+D:\Git\Angular CRUD\WebApi\WebApi\bin\System.Web.Http.Cors.xml

@@ -20,7 +20,7 @@ namespace WebApi.Models
             this.OrderItems = new HashSet<OrderItem>();
         }
     
-        public int ItemID { get; set; }
+        public int ItemId { get; set; }
         public string Name { get; set; }
         public Nullable<decimal> Price { get; set; }
     

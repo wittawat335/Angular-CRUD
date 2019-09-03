@@ -44,7 +44,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != item.ItemID)
+            if (id != item.ItemId)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace WebApi.Controllers
             db.Items.Add(item);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
+            return CreatedAtRoute("DefaultApi", new { id = item.ItemId }, item);
         }
 
         // DELETE: api/Item/5
@@ -112,7 +112,7 @@ namespace WebApi.Controllers
 
         private bool ItemExists(int id)
         {
-            return db.Items.Count(e => e.ItemID == id) > 0;
+            return db.Items.Count(e => e.ItemId == id) > 0;
         }
     }
 }

@@ -1,4 +1,6 @@
 export class Item {
-    ItemID: number;
+    ItemId: number;
     Name: string;
-}
+    Price:number;
+} 
+

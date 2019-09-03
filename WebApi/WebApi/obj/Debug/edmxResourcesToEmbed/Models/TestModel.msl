@@ -4,38 +4,49 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="RestaurantModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Items">
       <EntityTypeMapping TypeName="RestaurantModel.Item">
         <MappingFragment StoreEntitySet="Item">
-          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="RestaurantModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-          <ScalarProperty Name="PMethod" ColumnName="PMethod" />
           <ScalarProperty Name="GTotal" ColumnName="GTotal" />
+          <ScalarProperty Name="PMethod" ColumnName="PMethod" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderItems">
       <EntityTypeMapping TypeName="RestaurantModel.OrderItem">
         <MappingFragment StoreEntitySet="OrderItems">
-          <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentDetails">
+      <EntityTypeMapping TypeName="RestaurantModel.PaymentDetail">
+        <MappingFragment StoreEntitySet="PaymentDetails">
+          <ScalarProperty Name="CVV" ColumnName="CVV" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="CardOwnerName" ColumnName="CardOwnerName" />
+          <ScalarProperty Name="PMId" ColumnName="PMId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

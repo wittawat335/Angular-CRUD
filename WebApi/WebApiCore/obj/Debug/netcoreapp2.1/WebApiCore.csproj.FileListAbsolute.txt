@@ -11,4 +11,3 @@ D:\Git\Angular CRUD\WebApi\WebApiCore\obj\Debug\netcoreapp2.1\WebApiCore.Assembl
 D:\Git\Angular CRUD\WebApi\WebApiCore\obj\Debug\netcoreapp2.1\WebApiCore.RazorTargetAssemblyInfo.cache
 D:\Git\Angular CRUD\WebApi\WebApiCore\obj\Debug\netcoreapp2.1\WebApiCore.dll
 D:\Git\Angular CRUD\WebApi\WebApiCore\obj\Debug\netcoreapp2.1\WebApiCore.pdb
-D:\Git\Angular CRUD\WebApi\WebApiCore\obj\Debug\netcoreapp2.1\WebApiCore.csprojAssemblyReference.cache
