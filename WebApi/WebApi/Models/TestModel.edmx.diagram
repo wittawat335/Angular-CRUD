@@ -8,8 +8,8 @@
         <EntityTypeShape EntityType="RestaurantModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="RestaurantModel.Item" Width="1.5" PointX="3" PointY="5.25" />
         <EntityTypeShape EntityType="RestaurantModel.Order" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="RestaurantModel.OrderItem" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="RestaurantModel.PaymentDetail" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="RestaurantModel.OrderItems" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="RestaurantModel.PaymentDetails" Width="1.5" PointX="5.75" PointY="4.75" />
         <AssociationConnector Association="RestaurantModel.FK_Order_Customer" />
         <AssociationConnector Association="RestaurantModel.FK_OrderItems_Item" />
         <AssociationConnector Association="RestaurantModel.FK_OrderItems_Order" />

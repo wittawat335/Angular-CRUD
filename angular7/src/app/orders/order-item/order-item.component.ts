@@ -31,9 +31,9 @@ export class OrderItemComponent implements OnInit {
 
     if(this.data.orderItemIndex == null) //เช็คจากหน้าแรกก็คือ Order ฟังก์ชั่น AddOrEditOrderItem ว่ามีการยิง index เข้ามาหรือไม่
     this.formData = {
-      OrderItemID: null,
-      OrderID: this.data.OrderID,
-      ItemID: 0,
+      OrderItemId: null,
+      OrderId: this.data.OrderID,
+      ItemId: 0,
       ItemName: '',
       Price: 0,
       Quantity: 0,
@@ -62,7 +62,7 @@ export class OrderItemComponent implements OnInit {
   onSubmit(form: NgForm) {
     if(this.validateForm(form.value)){    
       if(this.data.orderItemIndex == null)
-      this.orderService.orderItems.push(form.value);
+        this.orderService.orderItems.push(form.value);
       else
         this.orderService.orderItems[this.data.orderItemIndex] = form.value;
       this.dialogRef.close();
@@ -71,7 +71,7 @@ export class OrderItemComponent implements OnInit {
 
   validateForm(formData: OrderItem) {
     this.isValid = true;
-    if (formData.ItemID == 0){
+    if (formData.ItemId == 0){
       this.isValid = false;
     } 
     else if (formData.Quantity == 0){

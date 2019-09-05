@@ -1,9 +1,9 @@
 export class Order {
-    OrderID : number;
+    OrderId : number;
     OrderNo : string;
-    CustomerID : number;
+    CustomerId : number;
     PMethod : string;
     GTotal : number;
-    DeletedOrderItemIDs: string;
+    DeletedOrderItemIds: string;
 }
 

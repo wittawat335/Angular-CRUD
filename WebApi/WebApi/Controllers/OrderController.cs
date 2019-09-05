@@ -19,14 +19,14 @@ namespace WebApi.Controllers
         // GET: api/Order
         public IQueryable<Order> GetOrders()
         {
-            return db.Orders;
+            return db.Order;
         }
 
         // GET: api/Order/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(long id)
         {
-            Order order = db.Orders.Find(id);
+            Order order = db.Order.Find(id);
             if (order == null)
             {
                 return NotFound();
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != order.OrderID)
+            if (id != order.OrderId)
             {
                 return BadRequest();
             }
@@ -74,28 +74,29 @@ namespace WebApi.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
         {
-            if (!ModelState.IsValid)
+            db.Order.Add(order);
+
+            foreach (var item in order.OrderItems)
             {
-                return BadRequest(ModelState);
+                db.OrderItems.Add(item);
             }
 
-            db.Orders.Add(order);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = order.OrderID }, order);
+            return Ok();
         }
 
         // DELETE: api/Order/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(long id)
         {
-            Order order = db.Orders.Find(id);
+            Order order = db.Order.Find(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(order);
+            db.Order.Remove(order);
             db.SaveChanges();
 
             return Ok(order);
@@ -112,7 +113,7 @@ namespace WebApi.Controllers
 
         private bool OrderExists(long id)
         {
-            return db.Orders.Count(e => e.OrderID == id) > 0;
+            return db.Order.Count(e => e.OrderId == id) > 0;
         }
     }
 }

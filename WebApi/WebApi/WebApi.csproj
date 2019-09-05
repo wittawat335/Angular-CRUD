@@ -186,10 +186,10 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderItem.cs">
+    <Compile Include="Models\OrderItems.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PaymentDetail.cs">
+    <Compile Include="Models\PaymentDetails.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TestModel.Context.cs">

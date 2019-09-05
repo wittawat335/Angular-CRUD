@@ -25,10 +25,10 @@ namespace WebApi.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderItem> OrderItems { get; set; }
-        public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderItems> OrderItems { get; set; }
+        public virtual DbSet<PaymentDetails> PaymentDetails { get; set; }
     }
 }

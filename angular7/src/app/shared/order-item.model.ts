@@ -1,7 +1,7 @@
 export class OrderItem {
-    OrderItemID: number;
-    OrderID: number;
-    ItemID: number;
+    OrderItemId: number;
+    OrderId: number;
+    ItemId: number;
     Quantity: number;
     ItemName:string;
     Price:number;

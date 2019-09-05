@@ -85,15 +85,23 @@ namespace WebApiCore.Controllers
         [HttpPost]
         public async Task<IActionResult> PostOrder([FromBody] Order order)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                _context.Order.Add(order);
+
+                foreach(var item in order.OrderItems)
+                {
+                    _context.OrderItems.Add(item);
+                }
+
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
-
-            _context.Order.Add(order);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
+            catch (Exception ex)
+            {
+                throw ex;
+            }         
         }
 
         // DELETE: api/Order/5

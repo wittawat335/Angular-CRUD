@@ -17,16 +17,16 @@ namespace WebApi.Controllers
         private RestaurantEntities db = new RestaurantEntities();
 
         // GET: api/Item
-        public IQueryable<Item> GetItems()
+        public IQueryable<Item> GetItem()
         {
-            return db.Items;
+            return db.Item;
         }
 
         // GET: api/Item/5
         [ResponseType(typeof(Item))]
         public IHttpActionResult GetItem(int id)
         {
-            Item item = db.Items.Find(id);
+            Item item = db.Item.Find(id);
             if (item == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Items.Add(item);
+            db.Item.Add(item);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = item.ItemId }, item);
@@ -89,13 +89,13 @@ namespace WebApi.Controllers
         [ResponseType(typeof(Item))]
         public IHttpActionResult DeleteItem(int id)
         {
-            Item item = db.Items.Find(id);
+            Item item = db.Item.Find(id);
             if (item == null)
             {
                 return NotFound();
             }
 
-            db.Items.Remove(item);
+            db.Item.Remove(item);
             db.SaveChanges();
 
             return Ok(item);
@@ -112,7 +112,7 @@ namespace WebApi.Controllers
 
         private bool ItemExists(int id)
         {
-            return db.Items.Count(e => e.ItemId == id) > 0;
+            return db.Item.Count(e => e.ItemId == id) > 0;
         }
     }
 }

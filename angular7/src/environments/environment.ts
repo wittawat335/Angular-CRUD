@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   //Normal
-  //apiUrl: 'https://localhost:44327/api'
+  apiUrl: 'https://localhost:44327/api'
   //Core
-  apiUrl: 'https://localhost:44326/api'
+  //apiUrl: 'https://localhost:44326/api'
 };
 
 /*

@@ -12,12 +12,14 @@ namespace WebApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PaymentDetail
+    public partial class OrderItems
     {
-        public int PMId { get; set; }
-        public string CardOwnerName { get; set; }
-        public string CardNumber { get; set; }
-        public string ExpirationDate { get; set; }
-        public string CVV { get; set; }
+        public long OrderItemId { get; set; }
+        public Nullable<long> OrderId { get; set; }
+        public Nullable<int> ItemId { get; set; }
+        public Nullable<int> Quantity { get; set; }
+    
+        public virtual Item Item { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

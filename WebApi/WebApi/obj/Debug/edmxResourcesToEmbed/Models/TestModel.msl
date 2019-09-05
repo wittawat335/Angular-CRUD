@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="RestaurantModelStoreContainer" CdmEntityContainer="RestaurantEntities">
-    <EntitySetMapping Name="Customers">
+    <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="RestaurantModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Items">
+    <EntitySetMapping Name="Item">
       <EntityTypeMapping TypeName="RestaurantModel.Item">
         <MappingFragment StoreEntitySet="Item">
           <ScalarProperty Name="Price" ColumnName="Price" />
@@ -18,29 +18,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
+    <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="RestaurantModel.Order">
         <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="GTotal" ColumnName="GTotal" />
           <ScalarProperty Name="PMethod" ColumnName="PMethod" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderItems">
-      <EntityTypeMapping TypeName="RestaurantModel.OrderItem">
+      <EntityTypeMapping TypeName="RestaurantModel.OrderItems">
         <MappingFragment StoreEntitySet="OrderItems">
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="OrderItemId" ColumnName="OrderItemId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PaymentDetails">
-      <EntityTypeMapping TypeName="RestaurantModel.PaymentDetail">
+      <EntityTypeMapping TypeName="RestaurantModel.PaymentDetails">
         <MappingFragment StoreEntitySet="PaymentDetails">
           <ScalarProperty Name="CVV" ColumnName="CVV" />
           <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
