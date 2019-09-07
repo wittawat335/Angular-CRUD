@@ -12,11 +12,11 @@ namespace WebApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderItems
+    public partial class OrderItem
     {
-        public long OrderItemId { get; set; }
-        public Nullable<long> OrderId { get; set; }
-        public Nullable<int> ItemId { get; set; }
+        public long OrderItemID { get; set; }
+        public Nullable<long> OrderID { get; set; }
+        public Nullable<int> ItemID { get; set; }
         public Nullable<int> Quantity { get; set; }
     
         public virtual Item Item { get; set; }

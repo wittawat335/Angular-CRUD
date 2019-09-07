@@ -5,6 +5,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OrderItemComponent } from '../order-item/order-item.component';
 import { Customer } from 'src/app/shared/customer.model';
 import { CustomerService } from 'src/app/shared/customer.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,10 +20,21 @@ export class OrderComponent implements OnInit {
 
   constructor(private service: OrderService,
     private dialog:MatDialog,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService,
+    private toastr: ToastrService,
+    private router: Router,
+    private currentRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.resetForm();
+    let orderId = this.currentRoute.snapshot.paramMap.get('id');
+    if(orderId == null)
+      this.resetForm();
+    else{
+      this.service.getOrderById(parseInt(orderId)).then(res => {
+        this.service.formData = res.order;
+        this.service.orderItems = res.orderDetails;
+      });
+    }
 
     this.customerService.getCustomerList().then(res => this.customerList = res as Customer[]);
   }
@@ -49,8 +62,9 @@ export class OrderComponent implements OnInit {
     this.dialog.open(OrderItemComponent, dialogConfig).afterClosed().subscribe(res => { this.updateGrandTotal(); }); //ถ้าตอน click มี index เข้ามา จะทำการ biding
   }
 
-  onDeleteOrderItem(OrderItemID: number, i: number){
- 
+  onDeleteOrderItem(OrderItemId: number, i: number){
+      if (OrderItemId != null)
+        this.service.formData.DeletedOrderItemIds += OrderItemId + ",";
       this.service.orderItems.splice(i,1);
       this.updateGrandTotal();
   
@@ -64,11 +78,9 @@ export class OrderComponent implements OnInit {
   validateForm(){
     this.isValid = true;
     if(this.service.formData.CustomerId == 0){
-      alert('5');
       this.isValid = false;
     }    
     else if(this.service.orderItems.length == 0){
-      alert('2');
       this.isValid = false;
     }
     return this.isValid; 
@@ -78,6 +90,8 @@ export class OrderComponent implements OnInit {
     if(this.validateForm()){
       this.service.saveOrUpdateOrder().subscribe(res => {
         this.resetForm();
+        this.toastr.success('บันทึกเรียบร้อย','');
+        this.router.navigate(['/orders']);
       })
     }
   }

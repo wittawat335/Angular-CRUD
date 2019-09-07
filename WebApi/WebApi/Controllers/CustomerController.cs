@@ -14,19 +14,19 @@ namespace WebApi.Controllers
 {
     public class CustomerController : ApiController
     {
-        private RestaurantEntities db = new RestaurantEntities();
+        private RestaurantDBEntities db = new RestaurantDBEntities();
 
         // GET: api/Customer
         public IQueryable<Customer> GetCustomer()
         {
-            return db.Customer;
+            return db.Customers;
         }
 
         // GET: api/Customer/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult GetCustomer(int id)
         {
-            Customer customer = db.Customer.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return NotFound();
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != customer.CustomerId)
+            if (id != customer.CustomerID)
             {
                 return BadRequest();
             }
@@ -79,23 +79,23 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Customer.Add(customer);
+            db.Customers.Add(customer);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
+            return CreatedAtRoute("DefaultApi", new { id = customer.CustomerID }, customer);
         }
 
         // DELETE: api/Customer/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult DeleteCustomer(int id)
         {
-            Customer customer = db.Customer.Find(id);
+            Customer customer = db.Customers.Find(id);
             if (customer == null)
             {
                 return NotFound();
             }
 
-            db.Customer.Remove(customer);
+            db.Customers.Remove(customer);
             db.SaveChanges();
 
             return Ok(customer);
@@ -112,7 +112,7 @@ namespace WebApi.Controllers
 
         private bool CustomerExists(int id)
         {
-            return db.Customer.Count(e => e.CustomerId == id) > 0;
+            return db.Customers.Count(e => e.CustomerID == id) > 0;
         }
     }
 }

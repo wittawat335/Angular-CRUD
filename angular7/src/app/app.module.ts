@@ -12,6 +12,7 @@ import { OrderComponent } from './orders/order/order.component';
 import { OrderItemComponent } from './orders/order-item/order-item.component';
 import { OrderService } from './shared/order.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot() // ToastrModule added
   ],
   entryComponents:[OrderItemComponent],
   providers: [OrderService],
