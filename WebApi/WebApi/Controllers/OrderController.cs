@@ -14,22 +14,23 @@ namespace WebApi.Controllers
 {
     public class OrderController : ApiController
     {
-        private RestaurantDBEntities db = new RestaurantDBEntities();
+        private AngularDemoEntities db = new AngularDemoEntities();
 
         // GET: api/Order
-        public Object GetOrders()
+        public Object GetOrder()
         {
             try
             {
-                var result = (from a in db.Orders
-                              join b in db.Customers on a.CustomerID equals b.CustomerID
+                var result = (from a in db.Order
+                              join b in db.Customer on a.CustomerId equals b.CustomerId
                               select new
                               {
-                                  a.OrderID,
+                                  a.OrderId,
                                   a.OrderNo,
                                   Customer = b.Name,
                                   a.PMethod,
-                                  a.GTotal
+                                  a.GTotal,
+                                  DeletedOrderItemIds = ""
                               }).ToList();
                 return result;
             }
@@ -45,15 +46,26 @@ namespace WebApi.Controllers
         {
             try
             {
-                var order = db.Orders.FirstOrDefault(x => x.OrderID == id);
+                var order = (from x in db.Order
+                             where x.OrderId == id
+                             select new
+                             {
+                                 x.OrderId,
+                                 x.OrderNo,
+                                 x.CustomerId,
+                                 x.PMethod,
+                                 x.GTotal,
+                                 DeletedOrderItemIds = ""
+                             }).FirstOrDefault();
+
                 var orderDetails = (from a in db.OrderItems
-                                    join b in db.Items on a.ItemID equals b.ItemID
-                                    where a.OrderID == id
+                                    join b in db.Item on a.ItemId equals b.ItemId
+                                    where a.OrderId == id
                                     select new
                                     {
-                                        a.OrderID,
-                                        a.OrderItemID,
-                                        a.ItemID,
+                                        a.OrderId,
+                                        a.OrderItemId,
+                                        a.ItemId,
                                         ItemName = b.Name,
                                         b.Price,
                                         a.Quantity,
@@ -67,15 +79,15 @@ namespace WebApi.Controllers
             }
         }
 
-        // POST: api/Order
+        // POST: api/Order=
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
         {
             try
             {
                 //Order table
-                if (order.OrderID == 0)
-                    db.Orders.Add(order);
+                if (order.OrderId == 0)
+                    db.Order.Add(order);
                 else
                     //db.Order.Attach(order);
                 db.Entry(order).State = EntityState.Modified;
@@ -83,19 +95,21 @@ namespace WebApi.Controllers
                 //OrderItems table
                 foreach (var item in order.OrderItems)
                 {
-                    if (item.OrderItemID == 0)
+                    if (item.OrderItemId == 0)
                         db.OrderItems.Add(item);
                     else
                         db.Entry(item).State = EntityState.Modified;
                 }
 
                 //Delete for OrderItems
-                foreach (var id in order.DeletedOrderItemIDs.Split(',').Where(x => x != ""))
+                if (order.DeletedOrderItemIds != null)
                 {
-                    OrderItem x = db.OrderItems.Find(Convert.ToInt64(id));
-                    db.OrderItems.Remove(x);
-                }
-
+                    foreach (var id in order.DeletedOrderItemIds.Split(',').Where(x => x != ""))
+                    {
+                        OrderItems x = db.OrderItems.Find(Convert.ToInt64(id));
+                        db.OrderItems.Remove(x);
+                    }
+                }            
 
                 db.SaveChanges();
 
@@ -112,13 +126,13 @@ namespace WebApi.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(long id)
         {
-            Order order = db.Orders.Find(id);
+            Order order = db.Order.Find(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            db.Orders.Remove(order);
+            db.Order.Remove(order);
             db.SaveChanges();
 
             return Ok(order);
@@ -135,7 +149,7 @@ namespace WebApi.Controllers
 
         private bool OrderExists(long id)
         {
-            return db.Orders.Count(e => e.OrderID == id) > 0;
+            return db.Order.Count(e => e.OrderId == id) > 0;
         }
     }
 }

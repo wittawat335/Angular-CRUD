@@ -14,19 +14,19 @@ namespace WebApi.Controllers
 {
     public class ItemController : ApiController
     {
-        private RestaurantDBEntities db = new RestaurantDBEntities();
+        private AngularDemoEntities db = new AngularDemoEntities();
 
         // GET: api/Item
         public IQueryable<Item> GetItem()
         {
-            return db.Items;
+            return db.Item;
         }
 
         // GET: api/Item/5
         [ResponseType(typeof(Item))]
         public IHttpActionResult GetItem(int id)
         {
-            Item item = db.Items.Find(id);
+            Item item = db.Item.Find(id);
             if (item == null)
             {
                 return NotFound();
@@ -44,7 +44,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != item.ItemID)
+            if (id != item.ItemId)
             {
                 return BadRequest();
             }
@@ -79,23 +79,23 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Items.Add(item);
+            db.Item.Add(item);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
+            return CreatedAtRoute("DefaultApi", new { id = item.ItemId }, item);
         }
 
         // DELETE: api/Item/5
         [ResponseType(typeof(Item))]
         public IHttpActionResult DeleteItem(int id)
         {
-            Item item = db.Items.Find(id);
+            Item item = db.Item.Find(id);
             if (item == null)
             {
                 return NotFound();
             }
 
-            db.Items.Remove(item);
+            db.Item.Remove(item);
             db.SaveChanges();
 
             return Ok(item);
@@ -112,7 +112,7 @@ namespace WebApi.Controllers
 
         private bool ItemExists(int id)
         {
-            return db.Items.Count(e => e.ItemID == id) > 0;
+            return db.Item.Count(e => e.ItemId == id) > 0;
         }
     }
 }

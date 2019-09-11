@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="RestaurantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="AngularDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Customer">
     <Key>
-      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="CustomerId" />
     </Key>
-    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
-      <PropertyRef Name="ItemID" />
+      <PropertyRef Name="ItemId" />
     </Key>
-    <Property Name="ItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
-      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="OrderId" />
     </Key>
-    <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrderNo" Type="varchar" MaxLength="50" />
-    <Property Name="CustomerID" Type="int" />
+    <Property Name="CustomerId" Type="int" />
     <Property Name="PMethod" Type="varchar" MaxLength="50" />
     <Property Name="GTotal" Type="decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="OrderItems">
     <Key>
-      <PropertyRef Name="OrderItemID" />
+      <PropertyRef Name="OrderItemId" />
     </Key>
-    <Property Name="OrderItemID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="OrderID" Type="bigint" />
-    <Property Name="ItemID" Type="int" />
+    <Property Name="OrderItemId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="bigint" />
+    <Property Name="ItemId" Type="int" />
     <Property Name="Quantity" Type="int" />
   </EntityType>
   <Association Name="FK_Order_Customer">
@@ -39,10 +39,10 @@
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
-        <PropertyRef Name="CustomerID" />
+        <PropertyRef Name="CustomerId" />
       </Principal>
       <Dependent Role="Order">
-        <PropertyRef Name="CustomerID" />
+        <PropertyRef Name="CustomerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -51,10 +51,10 @@
     <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Item">
-        <PropertyRef Name="ItemID" />
+        <PropertyRef Name="ItemId" />
       </Principal>
       <Dependent Role="OrderItems">
-        <PropertyRef Name="ItemID" />
+        <PropertyRef Name="ItemId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -63,14 +63,14 @@
     <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
-        <PropertyRef Name="OrderID" />
+        <PropertyRef Name="OrderId" />
       </Principal>
       <Dependent Role="OrderItems">
-        <PropertyRef Name="OrderID" />
+        <PropertyRef Name="OrderId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="RestaurantDBModelStoreContainer">
+  <EntityContainer Name="AngularDemoModelStoreContainer">
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />

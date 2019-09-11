@@ -1,40 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="RestaurantDBModelStoreContainer" CdmEntityContainer="RestaurantDBEntities">
-    <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="RestaurantDBModel.Customer">
+  <EntityContainerMapping StorageEntityContainer="AngularDemoModelStoreContainer" CdmEntityContainer="AngularDemoEntities">
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="AngularDemoModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Items">
-      <EntityTypeMapping TypeName="RestaurantDBModel.Item">
+    <EntitySetMapping Name="Item">
+      <EntityTypeMapping TypeName="AngularDemoModel.Item">
         <MappingFragment StoreEntitySet="Item">
-          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="RestaurantDBModel.Order">
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="AngularDemoModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
           <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
-          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
           <ScalarProperty Name="PMethod" ColumnName="PMethod" />
           <ScalarProperty Name="GTotal" ColumnName="GTotal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderItems">
-      <EntityTypeMapping TypeName="RestaurantDBModel.OrderItem">
+      <EntityTypeMapping TypeName="AngularDemoModel.OrderItems">
         <MappingFragment StoreEntitySet="OrderItems">
-          <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="OrderItemId" ColumnName="OrderItemId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
       </EntityTypeMapping>

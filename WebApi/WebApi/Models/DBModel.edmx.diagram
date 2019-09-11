@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="daba261dfeea43e385a7a676a071e85e" Name="Diagram1">
-        <EntityTypeShape EntityType="RestaurantDBModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestaurantDBModel.Item" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestaurantDBModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RestaurantDBModel.OrderItem" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="RestaurantDBModel.FK_Order_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="RestaurantDBModel.FK_OrderItems_Item" ManuallyRouted="false" />
-        <AssociationConnector Association="RestaurantDBModel.FK_OrderItems_Order" ManuallyRouted="false" />
+      <Diagram DiagramId="644b905807a0440b872c1f5f5f5d4b4a" Name="Diagram1">
+        <EntityTypeShape EntityType="AngularDemoModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AngularDemoModel.Item" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AngularDemoModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AngularDemoModel.OrderItems" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="AngularDemoModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AngularDemoModel.FK_OrderItems_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="AngularDemoModel.FK_OrderItems_Order" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

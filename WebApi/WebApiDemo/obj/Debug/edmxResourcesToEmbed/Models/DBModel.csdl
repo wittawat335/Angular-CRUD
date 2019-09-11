@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customer" EntityType="DemoModel.Customer" />
+    <EntitySet Name="Item" EntityType="DemoModel.Item" />
+    <EntitySet Name="Order" EntityType="DemoModel.Order" />
+    <EntitySet Name="OrderItems" EntityType="DemoModel.OrderItems" />
+    <AssociationSet Name="FK_Order_Customer" Association="DemoModel.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_Item" Association="DemoModel.FK_OrderItems_Item">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderItems_Order" Association="DemoModel.FK_OrderItems_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderItems" EntitySet="OrderItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Order" Relationship="DemoModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="OrderItems" Relationship="DemoModel.FK_OrderItems_Item" FromRole="Item" ToRole="OrderItems" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="PMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GTotal" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Customer" Relationship="DemoModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="OrderItems" Relationship="DemoModel.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItems" />
+  </EntityType>
+  <EntityType Name="OrderItems">
+    <Key>
+      <PropertyRef Name="OrderItemID" />
+    </Key>
+    <Property Name="OrderItemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int64" />
+    <Property Name="ItemID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Item" Relationship="DemoModel.FK_OrderItems_Item" FromRole="OrderItems" ToRole="Item" />
+    <NavigationProperty Name="Order" Relationship="DemoModel.FK_OrderItems_Order" FromRole="OrderItems" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK_Order_Customer">
+    <End Type="DemoModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="DemoModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItems_Item">
+    <End Type="DemoModel.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="DemoModel.OrderItems" Role="OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderItems_Order">
+    <End Type="DemoModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="DemoModel.OrderItems" Role="OrderItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderItems">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

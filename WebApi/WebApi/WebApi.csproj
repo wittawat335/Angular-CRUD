@@ -201,7 +201,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderItem.cs">
+    <Compile Include="Models\OrderItems.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

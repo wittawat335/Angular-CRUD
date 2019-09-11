@@ -18,20 +18,20 @@ namespace WebApi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderItems = new HashSet<OrderItem>();
+            this.OrderItems = new HashSet<OrderItems>();
         }
     
-        public long OrderID { get; set; }
+        public long OrderId { get; set; }
         public string OrderNo { get; set; }
-        public Nullable<int> CustomerID { get; set; }
+        public Nullable<int> CustomerId { get; set; }
         public string PMethod { get; set; }
         public Nullable<decimal> GTotal { get; set; }
         [NotMapped]
-        public string DeletedOrderItemIDs { get; set; }
+        public string DeletedOrderItemIds { get; set; }
 
 
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<OrderItems> OrderItems { get; set; }
     }
 }
