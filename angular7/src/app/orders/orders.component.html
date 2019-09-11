@@ -1,11 +1,11 @@
 <table class="table table-hover">
     <thead class="thead-light">
-      <th>#Order No.</th>
-      <th>Customer</th>
-      <th>P. Method</th>
-      <th>G. Total</th>
+      <th>หมายเลขสั่งซื้อ</th>
+      <th>ชื่อลูกค้า</th>
+      <th>ประเภทการจ่าย</th>
+      <th>ยอดรวมทั้งหมด</th>
       <th>
-        <a class="btn btn-outline-success" routerLink="/order"><i class="fa fa-plus-square"></i> Create New</a>
+        <a class="btn btn-outline-success" routerLink="/order"><i class="fa fa-plus-square"></i> ทำรายการใหม่</a>
       </th>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
         <td (click)="openForEdit(item.OrderId)">{{item.PMethod}}</td>
         <td (click)="openForEdit(item.OrderId)">{{item.GTotal}}</td>
         <td>
-            <a class="btn text-danger" (click)="onOrderDelete(item.OrderId )"><i class="fa fa-trash fa-lg"></i></a>
+            <a class="btn text-danger" (click)="onOrderDelete(item.OrderId)"><i class="fa fa-trash fa-lg"></i></a>
         </td>
       </tr>
     </tbody>

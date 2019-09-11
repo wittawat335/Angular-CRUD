@@ -126,10 +126,12 @@ namespace WebApi.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(long id)
         {
-            Order order = db.Order.Find(id);
-            if (order == null)
+            Order order = db.Order.Include(y => y.OrderItems)
+                .SingleOrDefault(x => x.OrderId == id);
+           
+            foreach(var item in order.OrderItems.ToList())
             {
-                return NotFound();
+                db.OrderItems.Remove(item);
             }
 
             db.Order.Remove(order);
